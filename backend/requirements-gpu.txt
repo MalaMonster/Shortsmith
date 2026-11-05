@@ -1,0 +1,2 @@
+# NVIDIA GPU acceleration for local Whisper (CUDA 12 runtime libraries, ~600 MB)
+nvidia-cublas-cu12
