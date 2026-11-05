@@ -167,6 +167,7 @@ def main():
 
     url = f"http://127.0.0.1:{port}"
     print(f"Shortsmith is running at {url}")
+    threading.Thread(target=appmain.updater.cleanup_old_installers, daemon=True).start()
     if a.no_browser:
         th.join()
         return

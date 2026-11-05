@@ -118,9 +118,10 @@ def install(job: Job, life: dict) -> dict:
 
 
 def cleanup_old_installers():
-    try:
-        for f in UPDATES_DIR.glob("Shortsmith-Setup-*"):
-            if time.time() - os.path.getmtime(f) > 3600:
-                f.unlink(missing_ok=True)
-    except OSError:
-        pass
+    """Delete installers left over from a finished update (the one still running is locked and skipped)."""
+    time.sleep(20)  # the installer that relaunched us may still be finishing
+    for f in UPDATES_DIR.glob("Shortsmith-Setup-*"):
+        try:
+            f.unlink()
+        except OSError:
+            pass
